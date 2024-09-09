@@ -1,0 +1,27 @@
+@import 'bootstrap/dist/css/bootstrap.css';
+@import './base.css';
+
+.sidebar {
+  min-height: 100vh;
+  background-color: #1d2327;
+
+  * {
+    color: #fff;
+    background-color: transparent;
+  }
+
+  a {
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-width: 1px;
+  }
+
+  .active {
+    background-color: #2271b1;
+  }
+
+  .capitalize {
+    text-transform: capitalize;
+  }
+}
