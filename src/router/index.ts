@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import PageDefault from '../views/PageDefault.vue'
+import PageDefault from '../Layouts/PageDefault.vue'
+import AuthLayout from '../Layouts/AuthLayout.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -10,6 +10,11 @@ const router = createRouter({
       name: 'home',
       component: PageDefault,
       children: [
+        {
+          path: '',
+          name: 'homePage',
+          component: () => import('../views/Home.vue')
+        },
         {
           path: 'shop',
           name: 'shop',
@@ -34,8 +39,7 @@ const router = createRouter({
     },
     {
       path: '/authorize',
-      name: 'Sign In',
-      component: () => import('../Layouts/AuthLayout.vue'),
+      component: AuthLayout,
       children: [
         {
           path: 'signin',
