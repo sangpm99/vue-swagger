@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
 import SideBar from '../components/SideBar.vue'
+import Header from '@/components/Header.vue'
 </script>
 
 <template>
+  <Header />
   <div class="row">
     <div class="col-3 h-full sidebar pe-0">
       <SideBar />

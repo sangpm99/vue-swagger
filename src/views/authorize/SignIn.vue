@@ -1,18 +1,21 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import axios from 'axios'
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterLink } from 'vue-router'
+import { HOST } from '@/enums/constants'
+import { setCookie } from '@/stores/userCookie'
 
-const email = ref('')
+const email = ref<string>('')
 
-const password = ref('')
+const password = ref<string>('')
 
-const reCaptcha = ref('string')
+const reCaptcha = ref<string>('string')
 
-const rememberMe = ref(false)
+const rememberMe = ref<boolean>(false)
 
-const login = async () => {
-  const url = 'https://api.cyberonegate.com/id/Authorize/SignIn'
+const signin = async () => {
+  const slug = '/Authorize/SignIn'
+  const url = HOST + slug
   try {
     const response = await axios.post(url, {
       email: email.value,
@@ -22,7 +25,9 @@ const login = async () => {
     })
 
     if (response.status === 200) {
-      console.log(response.data)
+      setCookie('User Data', response.data, 1)
+
+      window.location.href = '/'
     }
   } catch (err) {
     console.log('Lỗi fetch dữ liệu')
@@ -37,7 +42,7 @@ const login = async () => {
         <div class="col col-lg-9 col-xl-7">
           <div class="card rounded-3">
             <div class="card-body p-4">
-              <h4 class="text-center my-3 pb-3">Login</h4>
+              <h4 class="text-center my-3 pb-3">Sign In</h4>
 
               <form action="" method="POST" class="row mb-4 pb-2">
                 <div class="col-12">
@@ -58,8 +63,8 @@ const login = async () => {
                     <input
                       class="mt-2 btn btn-primary float-end"
                       type="submit"
-                      value="Login"
-                      @click.prevent="login"
+                      value="Sign In"
+                      @click.prevent="signin"
                     />
                     <br />
                     <p class="text-center mt-5">

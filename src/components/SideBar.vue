@@ -5,18 +5,19 @@ import router from '../router'
 
 <template>
   <div class="list-group">
-    <h2 class="ms-2">Dashboard</h2>
-    <nav v-for="item in router.options.routes" :key="item.name">
-      <RouterLink
-        :to="item.path"
-        :class="
-          router.currentRoute.value.path === item.path
-            ? 'list-group-item capitalize active'
-            : 'list-group-item capitalize'
-        "
-      >
-        {{ item.name }}
-      </RouterLink>
-    </nav>
+    <ul>
+      <li class="mb-5" v-for="item in router.options.routes" :key="item.name">
+        <h3 class="ms-2 capitalize">{{ item.name }}</h3>
+        <ul>
+          <li>
+            <template v-for="subItem in item.children" :key="subItem.name">
+              <RouterLink :to="item.path + subItem.path" class="list-group-item capitalize">
+                {{ subItem.name }}
+              </RouterLink>
+            </template>
+          </li>
+        </ul>
+      </li>
+    </ul>
   </div>
 </template>

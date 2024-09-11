@@ -12,7 +12,7 @@ const router = createRouter({
       children: [
         {
           path: '',
-          name: 'homePage',
+          name: 'home',
           component: () => import('../views/Home.vue')
         },
         {
@@ -38,18 +38,34 @@ const router = createRouter({
       ]
     },
     {
-      path: '/authorize',
+      path: '/authorize/',
       component: AuthLayout,
+      name: 'authorize',
       children: [
         {
           path: 'signin',
-          name: 'signin',
+          name: 'sign in',
           component: () => import('../views/authorize/SignIn.vue')
         },
         {
           path: 'signup',
-          name: 'signup',
+          name: 'sign up',
           component: () => import('../views/authorize/SignUp.vue')
+        },
+        {
+          path: 'twofactor',
+          name: 'two factor',
+          component: () => import('../views/authorize/TwoFactor.vue')
+        },
+        {
+          path: 'forgotpassword',
+          name: 'forgot password',
+          component: () => import('../views/authorize/ForgotPassword.vue')
+        },
+        {
+          path: 'recoverpassword',
+          name: 'recover password',
+          component: () => import('../views/authorize/RecoverPassword.vue')
         }
       ]
     }

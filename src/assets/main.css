@@ -1,27 +1,40 @@
 @import 'bootstrap/dist/css/bootstrap.css';
 @import './base.css';
 
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+:disabled {
+  cursor: not-allowed;
+  pointer-events: all !important;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
 .sidebar {
   min-height: 100vh;
   background-color: #1d2327;
+}
 
-  * {
-    color: #fff;
-    background-color: transparent;
-  }
+.sidebar * {
+  color: #fff;
+  background-color: transparent;
+}
 
-  a {
-    border-left: none;
-    border-right: none;
-    border-top: none;
-    border-width: 1px;
-  }
+.sidebar a {
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-width: 1px;
+  transition: all 0.125s ease;
+}
 
-  .active {
-    background-color: #2271b1;
-  }
-
-  .capitalize {
-    text-transform: capitalize;
-  }
+.sidebar a:hover,
+.sidebar a.active,
+.sidebar a.router-link-exact-active {
+  background-color: #2271b1;
 }
