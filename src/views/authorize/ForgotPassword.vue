@@ -1,34 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import axios from 'axios'
-import router from '../../router'
-import { HOST } from '../../enums/constants'
+import forgotPassword from '@/apis/authorize/forgotPassword';
 
 const email = ref<string>('')
-
 const reCaptcha = ref<string>('string')
-
-const resetPassword = async () => {
-  const slug = '/Authorize/ForgotPassword'
-  const url = HOST + slug
-  try {
-    const response = await axios.post(url, {
-      email: email.value,
-      reCaptcha: reCaptcha.value
-    })
-
-    if (response.status === 200) {
-      console.log(response.data)
-
-      router.push({
-        path: '/authorize/recoverpassword',
-        query: { email: email.value }
-      })
-    }
-  } catch (err) {
-    console.log('Lỗi fetch dữ liệu')
-  }
-}
 </script>
 
 <template>
@@ -52,7 +27,7 @@ const resetPassword = async () => {
                       class="mt-2 btn btn-primary float-end"
                       type="submit"
                       value="Reset Password"
-                      @click.prevent="resetPassword"
+                      @click.prevent="forgotPassword(email, reCaptcha)"
                     />
                   </div>
                 </div>

@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import axios from 'axios'
 import { RouterLink } from 'vue-router'
-import { HOST } from '@/enums/constants'
-import { setCookie } from '@/stores/userCookie'
+import signIn from '@/apis/authorize/signIn'
 
 const email = ref<string>('')
 
@@ -13,26 +11,6 @@ const reCaptcha = ref<string>('string')
 
 const rememberMe = ref<boolean>(false)
 
-const signin = async () => {
-  const slug = '/Authorize/SignIn'
-  const url = HOST + slug
-  try {
-    const response = await axios.post(url, {
-      email: email.value,
-      password: password.value,
-      reCaptcha: reCaptcha.value,
-      rememberMe: rememberMe.value
-    })
-
-    if (response.status === 200) {
-      setCookie('User Data', response.data, 1)
-
-      window.location.href = '/'
-    }
-  } catch (err) {
-    console.log('Lỗi fetch dữ liệu')
-  }
-}
 </script>
 
 <template>
@@ -64,7 +42,7 @@ const signin = async () => {
                       class="mt-2 btn btn-primary float-end"
                       type="submit"
                       value="Sign In"
-                      @click.prevent="signin"
+                      @click.prevent="signIn(email, password, reCaptcha, rememberMe)"
                     />
                     <br />
                     <p class="text-center mt-5">

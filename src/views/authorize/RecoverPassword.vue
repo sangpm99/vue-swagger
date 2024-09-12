@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import axios from 'axios'
 import { useRoute } from 'vue-router'
-import { HOST } from '../../enums/constants'
+import recoverPassword from '@/apis/authorize/recoverPassword'
 
 const route = useRoute()
 
@@ -18,31 +17,13 @@ const confirmNewPassword = ref<string>('')
 
 const reCaptcha = ref<string>('string')
 
-const notifyPasswordNotMatch = ref<boolean>(false)
+const notifyPasswordNotMatch = ref<boolean>(false);
 
-const recoverPassword = async () => {
-  if (newPassword.value === confirmNewPassword.value) {
-    const slug = '/Authorize/RecoverPassword'
-    const url = HOST + slug
-    try {
-      const response = await axios.post(url, {
-        email: email.value,
-        newPassword: newPassword.value,
-        confirmNewPassword: confirmNewPassword.value,
-        token: token.value,
-        reCaptcha: reCaptcha.value
-      })
-
-      if (response.status === 200) {
-        console.log(response.data)
-        alert('Password Has Change Successfully')
-        window.location.href = '/authorize/signin'
-      }
-    } catch (err) {
-      console.log('Lỗi fetch dữ liệu')
-    }
+const handleRecoverPassword = async () => {
+  if(await recoverPassword(email.value, newPassword.value, confirmNewPassword.value, token.value, reCaptcha.value)) {
+    notifyPasswordNotMatch.value = true;
   } else {
-    notifyPasswordNotMatch.value = true
+    notifyPasswordNotMatch.value = false;
   }
 }
 </script>
@@ -91,7 +72,7 @@ const recoverPassword = async () => {
                       class="mt-2 btn btn-primary float-end"
                       type="submit"
                       value="Recover Password"
-                      @click.prevent="recoverPassword"
+                      @click.prevent="handleRecoverPassword"
                     />
                   </div>
                 </div>

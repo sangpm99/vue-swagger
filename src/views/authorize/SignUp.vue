@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import axios from 'axios'
-import { HOST } from '../../enums/constants'
+import signUp from '@/apis/authorize/signUp';
 
 const userName = ref<string>('')
 
@@ -12,26 +11,6 @@ const password = ref<string>('')
 const confirmPassword = ref<string>('')
 
 const reCaptcha = ref<string>('string')
-
-const signup = async () => {
-  const slug = '/Authorize/SignUp'
-  const url = HOST + slug
-  try {
-    const response = await axios.post(url, {
-      username: userName.value,
-      email: email.value,
-      password: password.value,
-      confirmPassword: confirmPassword.value,
-      reCaptcha: reCaptcha.value
-    })
-
-    if (response.status === 200) {
-      console.log(response.data)
-    }
-  } catch (err) {
-    console.log('Lỗi fetch dữ liệu')
-  }
-}
 </script>
 
 <template>
@@ -70,7 +49,7 @@ const signup = async () => {
                       class="mt-2 btn btn-primary float-end"
                       type="submit"
                       value="Sign Up"
-                      @click.prevent="signup"
+                      @click.prevent="signUp(userName, email, password, confirmPassword, reCaptcha)"
                     />
                   </div>
                 </div>

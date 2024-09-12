@@ -6,12 +6,12 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
+      path: '',
       name: 'home',
       component: PageDefault,
       children: [
         {
-          path: '',
+          path: '/',
           name: 'home',
           component: () => import('../views/Home.vue')
         },
@@ -53,11 +53,6 @@ const router = createRouter({
           component: () => import('../views/authorize/SignUp.vue')
         },
         {
-          path: 'twofactor',
-          name: 'two factor',
-          component: () => import('../views/authorize/TwoFactor.vue')
-        },
-        {
           path: 'forgotpassword',
           name: 'forgot password',
           component: () => import('../views/authorize/ForgotPassword.vue')
@@ -68,6 +63,10 @@ const router = createRouter({
           component: () => import('../views/authorize/RecoverPassword.vue')
         }
       ]
+    },
+    {
+      path: '/my-account/',
+      
     }
   ]
 })

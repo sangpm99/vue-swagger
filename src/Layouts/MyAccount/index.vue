@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
 import Header from '@/components/Header.vue'
+import SideBar from '@/components/SideBar'
 </script>
 
 <template>
@@ -11,7 +12,11 @@ import Header from '@/components/Header.vue'
   </div>
 
   <div class="row">
-    <div class="col-12">
+    <div class="col-3">
+
+    </div>
+
+    <div class="col-9">
       <RouterView />
     </div>
   </div>
