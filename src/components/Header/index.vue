@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
-import router from '../router'
+import router from '@/routers'
 import { useUserData } from '@/composables/useUserData'
 import { delCookie } from '@/stores/userCookie'
+
 const { userData } = useUserData()
 
 const routes = router.options.routes

@@ -17,13 +17,21 @@ const confirmNewPassword = ref<string>('')
 
 const reCaptcha = ref<string>('string')
 
-const notifyPasswordNotMatch = ref<boolean>(false);
+const notifyPasswordNotMatch = ref<boolean>(false)
 
 const handleRecoverPassword = async () => {
-  if(await recoverPassword(email.value, newPassword.value, confirmNewPassword.value, token.value, reCaptcha.value)) {
-    notifyPasswordNotMatch.value = true;
+  if (
+    await recoverPassword(
+      email.value,
+      newPassword.value,
+      confirmNewPassword.value,
+      token.value,
+      reCaptcha.value
+    )
+  ) {
+    notifyPasswordNotMatch.value = true
   } else {
-    notifyPasswordNotMatch.value = false;
+    notifyPasswordNotMatch.value = false
   }
 }
 </script>

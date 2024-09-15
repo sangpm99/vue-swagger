@@ -1,4 +1,3 @@
-// src/composables/useUserData.ts
 import { getCookie } from '@/stores/userCookie'
 import type { UserData } from '@/types/UserData'
 

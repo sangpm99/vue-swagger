@@ -10,7 +10,6 @@ const password = ref<string>('')
 const reCaptcha = ref<string>('string')
 
 const rememberMe = ref<boolean>(false)
-
 </script>
 
 <template>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import forgotPassword from '@/apis/authorize/forgotPassword';
+import forgotPassword from '@/apis/authorize/forgotPassword'
 
 const email = ref<string>('')
 const reCaptcha = ref<string>('string')

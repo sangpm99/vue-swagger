@@ -1,3 +1,13 @@
+const setToken = (name: string, value: string, days: number) => {
+  let expires: string = ''
+  if (days) {
+    const date: Date = new Date()
+    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000)
+    expires = '; expires=' + date.toUTCString()
+  }
+  document.cookie = name + '=' + (value || '') + expires + '; path=/'
+}
+
 const setCookie = (name: string, value: Object, days: number) => {
   let expires: string = ''
   if (days) {
@@ -25,7 +35,7 @@ const getCookie = (name: string) => {
 
 const delCookie = (name: string) => {
   document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/'
-  window.location.reload();
+  window.location.reload()
 }
 
-export { setCookie, getCookie, delCookie }
+export { setToken, setCookie, getCookie, delCookie }

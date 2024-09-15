@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import signUp from '@/apis/authorize/signUp';
+import signUp from '@/apis/authorize/signUp'
 
 const userName = ref<string>('')
 
