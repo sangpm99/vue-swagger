@@ -48,11 +48,6 @@ const router = createRouter({
           component: () => import('../views/authorize/SignIn/index.vue')
         },
         {
-          path: 'twofactor',
-          name: 'two factor',
-          component: () => import('../views/authorize/TwoFactor/index.vue')
-        },
-        {
           path: 'signup',
           name: 'sign up',
           component: () => import('../views/authorize/SignUp/index.vue')

@@ -1,5 +1,5 @@
 import axios from '@/plugins/axios'
-import { setToken } from '@/stores/userCookie'
+import { setCookie } from '@/stores/userCookie'
 
 const signIn = async (email: string, password: string, reCaptcha: string, rememberMe: boolean) => {
   const slug = '/Authorize/SignIn'
@@ -12,9 +12,9 @@ const signIn = async (email: string, password: string, reCaptcha: string, rememb
     })
 
     if (response.status === 200) {
-      setToken('Token', response.data, 0.0035) // 5 ph
+      setCookie('User Data', response.data, 1)
 
-      window.location.href = '/authorize/twofactor'
+      window.location.href = '/'
     }
   } catch (err) {
     console.log('Lỗi fetch dữ liệu')
